@@ -1,0 +1,85 @@
+html{
+    background-image: url('background.jpeg');
+}
+    
+#App{
+    text-align: center;
+    height: 100%;
+}
+input{
+    margin: 0.7em;
+}
+form{
+    background-color: white;
+    width: 45%;
+    height: 60%;
+    margin: auto;
+}
+input{
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    padding: 0.5em;
+    width: 60%;
+    cursor: pointer;
+    border: 1px solid lightslategray;
+}
+h1{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 48px;
+    margin-bottom: 1em;
+    letter-spacing: 0.2em;
+    text-shadow: 1px 1px lightgray;
+}
+
+h3{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: gray;
+    margin: auto;
+    padding: 0.5em;
+}
+#error{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: blueviolet;
+    color: white;
+    font-size: 24px;
+}
+button{
+    background-color: dodgerblue;
+    padding: 1em;
+    width: 30%;
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+    margin-top: 0.3em;
+    margin-bottom: 0.6em;
+    font-size: 0.7em;
+    position: relative;
+    float: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    
+}
+.likeButton{
+    background-color: plum;
+    border: 0.5px solid white;
+    font-size: 0.6em;
+    width: 20%;
+
+}
+.blog{
+    background-color: white;
+    margin-top: 0.3em;
+    margin: auto;
+    width: 75%;
+    font-size: 1em;
+    padding: 0.5em;
+    border-bottom: 1px dotted lightcoral;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+}
+.title{
+    font-size: 1.3em;
+    text-align: center;
+    
+}
