@@ -159,9 +159,16 @@ const App = () => {
   }
   return (
     <div id='App'>
-      <h1>blogs</h1>
-      <h3>Welcome {user.name}!</h3>
-      <button onClick={logout}>Log out</button>
+      <div id='header'>
+        <h1 id='headerItem'>blogs</h1>
+        <h3 id='headerItem'>Welcome {user.name}!</h3>
+        <button 
+          id='headerItem' 
+          className='logout' 
+          onClick={logout}>
+          Log out
+          </button>
+      </div>
       <p id='error'>{errorMessage}</p>
       {blogForm()}
       {blogs.sort(function(a,b) {return a.likes < b.likes}).map(blog =>
