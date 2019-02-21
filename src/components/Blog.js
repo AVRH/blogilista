@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleLike, handleDelete }) => {
   const [showAll, setShowAll] = useState(false)
   
   return(
@@ -10,7 +10,8 @@ const Blog = ({ blog }) => {
     <p> <span className='title'>{blog.title}</span> {blog.author}</p>
     <p>{blog.url}</p>
     <p>{blog.likes}</p>
-  <button className='likeButton'>Like</button>
+  <button className='likeButton' onClick ={handleLike}>Like</button>
+  <button className='deleteButton' onClick={handleDelete}>Delete</button>
   </div>
   :
   <div onClick={() => setShowAll(true)} className='blog'>

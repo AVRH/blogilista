@@ -79,6 +79,33 @@ const App = () => {
     }
 
   }
+  const handleLike = async (blog) => {
+    try{
+      const response = await blogService.modify(blog)
+      setBlogs(blogs.map(blog => blog.id !== response.id ? blog : response))
+    }catch(exception){
+      console.log(exception)
+      setError('Error: like functionality failed')
+      setTimeout(() => {
+        setError(null)
+      },5000)
+    }
+  }
+  
+  const handleDelete = async (id) => {
+    if(window.confirm('Click ok to confirm deleting the blog')){
+    try{
+      const response = await blogService.remove(id)
+      setBlogs(blogs.filter(blog => blog.id !== id))
+    } catch (exception) {
+      console.log(exception)
+      setError('Deleting the blog was unsuccessfull. You can only delete blogs you have added yourself')
+      setTimeout(() => {
+        setError(null)
+      },5000)
+    }
+  }
+  }
   const logout = () => {
     setUser(null)
     window.localStorage.removeItem('bloglistUser')
@@ -137,8 +164,13 @@ const App = () => {
       <button onClick={logout}>Log out</button>
       <p id='error'>{errorMessage}</p>
       {blogForm()}
-      {blogs.map(blog =>
-      <Blog key={blog.id} blog={blog}/>)}
+      {blogs.sort(function(a,b) {return a.likes < b.likes}).map(blog =>
+      <Blog 
+        key={blog.id} 
+        blog={blog} 
+        handleLike={() => handleLike(blog)}
+        handleDelete={() => handleDelete(blog.id)}
+      />)}
     </div>
   )
   

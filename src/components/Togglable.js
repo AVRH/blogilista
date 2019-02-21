@@ -10,8 +10,6 @@ const Togglable = React.forwardRef((props, ref) => {
     setVisible(!visible)
   }
 
-
-
   return (
     <div>
       <div style={hideWhenVisible}>
