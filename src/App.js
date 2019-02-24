@@ -4,17 +4,19 @@ import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import  { useField } from './hooks'
 import './App.css'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUserName] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
   const [writer, setWriter] = useState('')
   const [url, setUrl] = useState('')
   const [errorMessage, setError] = useState(null)
+
+  const uname = useField('text')
+  const pw = useField('password')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -33,21 +35,19 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+    const username = uname.value
+    const password = pw.value
     try {
       const user = await loginService.login({ username, password })
       setUser(user)
       blogService.setToken(user.token)
       window.localStorage.setItem('bloglistUser', JSON.stringify(user))
-      setUserName('')
-      setPassword('')
     } catch(exception){
       console.log(exception)
       setError('Log in was unsuccessfull. Invalid password or username')
       setTimeout(() => {
         setError(null)
       },5000)
-      setPassword('')
-      setUserName('')
     }
   }
   const handleAddBlog = async (event) => {
@@ -131,21 +131,17 @@ const App = () => {
           <h3>Login</h3>
           <div className='input'>
             <input
-              type='text'
-              value={username}
+              type = {uname.Type}
               placeholder='Username'
-              name='Username'
-              onChange={({ target }) => setUserName(target.value)}
+              onChange={uname.onChange}
             >
             </input>
           </div>
           <div className='input'>
             <input
-              type='password'
-              value={password}
+              type={pw.type}
               placeholder='Password'
-              name='Password'
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={pw.onChange}
             >
             </input>
           </div>
