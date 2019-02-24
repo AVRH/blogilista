@@ -127,7 +127,7 @@ const App = () => {
       <div id='App'>
         <h1>BlogList</h1>
         <p id='error'>{errorMessage}</p>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className='login'>
           <h3>Login</h3>
           <div className='input'>
             <input
@@ -155,7 +155,7 @@ const App = () => {
     )
   }
   return (
-    <div id='App'>
+    <div id='App' className='bloglist'>
       <div id='header'>
         <h1 id='headerItem'>blogs</h1>
         <h3 id='headerItem'>Welcome {user.name}!</h3>
