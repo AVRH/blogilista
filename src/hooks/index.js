@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
-export const useField = (type) => { 
+export const useField = (type, name) => {
   const [value, setValue] = useState('')
+  const placeholder = name
 
   const onChange = (event) => {
     setValue(event.target.value)
@@ -10,6 +11,8 @@ export const useField = (type) => {
   return {
     type,
     value,
+    name,
+    placeholder,
     onChange
   }
 }

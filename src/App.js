@@ -15,8 +15,8 @@ const App = () => {
   const [url, setUrl] = useState('')
   const [errorMessage, setError] = useState(null)
 
-  const uname = useField('text')
-  const pw = useField('password')
+  const uname = useField('text','username')
+  const pw = useField('password','password')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -130,19 +130,11 @@ const App = () => {
         <form onSubmit={handleLogin} className='login'>
           <h3>Login</h3>
           <div className='input'>
-            <input
-              type = {uname.Type}
-              placeholder='Username'
-              onChange={uname.onChange}
-            >
+            <input {...uname}>
             </input>
           </div>
           <div className='input'>
-            <input
-              type={pw.type}
-              placeholder='Password'
-              onChange={pw.onChange}
-            >
+            <input {...pw}>
             </input>
           </div>
           <button type="submit">Log In</button>
