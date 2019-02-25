@@ -10,13 +10,13 @@ import './App.css'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [title, setTitle] = useState('')
-  const [writer, setWriter] = useState('')
-  const [url, setUrl] = useState('')
   const [errorMessage, setError] = useState(null)
 
   const uname = useField('text','username')
   const pw = useField('password','password')
+  const title = useField('text', 'title')
+  const author = useField('text', 'author')
+  const url = useField('text','url')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -49,13 +49,15 @@ const App = () => {
         setError(null)
       },5000)
     }
+    uname.reset.value()
+    pw.reset.value()
   }
   const handleAddBlog = async (event) => {
     event.preventDefault()
     const newBlog = {
-      title,
-      author: writer,
-      url,
+      title: title.value,
+      author: author.value,
+      url: url.value
     }
     try{
       const response = await blogService.create(newBlog)
@@ -64,9 +66,6 @@ const App = () => {
       setTimeout(() => {
         setError(null)
       },5000)
-      setTitle('')
-      setWriter('')
-      setUrl('')
     } catch(exception){
 
       console.log(exception)
@@ -75,7 +74,9 @@ const App = () => {
         setError(null)
       },5000)
     }
-
+    title.reset.value()
+    author.reset.value()
+    url.reset.value()
   }
   const handleLike = async (blog) => {
     try{
@@ -111,11 +112,8 @@ const App = () => {
     <Togglable buttonLabel = 'Add New'>
       <BlogForm
         handleAddBlog={handleAddBlog}
-        titleChange={( { target }) => setTitle(target.value)}
-        authorChange={({ target }) => setWriter(target.value)}
-        urlChange={({ target }) => setUrl(target.value)}
         title={title}
-        author={writer}
+        author={author}
         url={url}
       />
     </Togglable>
